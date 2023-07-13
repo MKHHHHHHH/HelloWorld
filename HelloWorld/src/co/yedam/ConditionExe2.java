@@ -10,16 +10,24 @@ public class ConditionExe2 {
 			String menu = scn.nextLine();
 			
 			// switch, if else if else
-		}
-		
+					
 		switch(Integer.parseInt(menu)) {
 		case 1 : 
-			login()
-			
-		}
-		}
+			login();
+			break;
+		case 2 : 
+			logout();
+			break;
+		case 3 :
+			signup();
+			break;
+		default :
+			System.out.println("END");
+			break;
+						}
+	}
 		
-	}// end of main();
+	} // end of main();
 	
 	public static void login() {
 		System.out.println("로그인 메뉴입니다.");
@@ -33,7 +41,6 @@ public class ConditionExe2 {
 	
 	
 	
-	
-	
 }
+	
 
