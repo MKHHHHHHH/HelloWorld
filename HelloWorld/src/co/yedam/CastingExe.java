@@ -23,5 +23,6 @@ public class CastingExe {
 
 		// git에서 추가한 내용입니다.
 		// local에서 추가한 내용입니다.
+		// 깃으로 보내기
 	}
 }
