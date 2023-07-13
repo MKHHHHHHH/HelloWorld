@@ -20,5 +20,7 @@ public class CastingExe {
 		System.out.print("num4: " + num4);
 		
 		System.out.printf("\nnum3의 값은 %d,num4의 값은 %.1f %s", num3, num4, "입니다");
+
+		// git에서 추가한 내용입니다.
 	}
 }
