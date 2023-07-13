@@ -1,6 +1,6 @@
 package co.yedam;
 
-public class Mainexe {
+public class MainExe {
 	public static void main(String[] args) {
 		System.out.println("hello, gihwan");
 		
