@@ -12,14 +12,14 @@ public class PrintExe3 {
 		int max = 0;
 		double avg = 0;
 		
-		for(int i=1; i<=3; i++){
-			System.out.println("숫자입력");
-			String q = scr.nextLine();
-			if (q > ) {
-				
-			}
-		}
-		
+//		for(int i=1; i<=3; i++){
+//			System.out.println("숫자입력");
+//			String q = scr.nextLine();
+//			if (q > ) {
+//				
+//			}
+//		}
+//		
 //		System.out.println("입력 >>");
 //		String a = scr.nextLine();
 //		System.out.println("입력 >>");
