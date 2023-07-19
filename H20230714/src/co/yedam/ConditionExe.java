@@ -1,6 +1,7 @@
 package co.yedam;
 
 public class ConditionExe {
+<<<<<<< HEAD
 	public static void main(String[] args) {
 		int score = 88;
 		
@@ -36,3 +37,7 @@ public class ConditionExe {
 		
 	} // end of main() ㅎㅎ 
 } // 찐막
+=======
+
+}
+>>>>>>> branch 'master' of https://github.com/MKHHHHHHH/HelloWorld.git
