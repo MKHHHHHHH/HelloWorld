@@ -2,7 +2,7 @@ package co.yedam.friend;
 
 public class Friend extends AddressApp {
 	// 이름, 연락처.
-
+	
 	private String name; // 값을 담기위한
 	private String phone;
 
