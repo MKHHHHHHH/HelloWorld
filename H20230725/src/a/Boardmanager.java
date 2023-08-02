@@ -22,7 +22,7 @@ public class Boardmanager {
 		}
 		
 		while(true) {
-			String str = br.readLine();
+			String str = 
 		}
 	}
 	

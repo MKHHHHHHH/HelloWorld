@@ -11,15 +11,15 @@ public class BankManager {
 	Scanner scn = new Scanner(System.in);
 	
 	
-	public int getDpoNext() {
-		String wow = null;
-		for (int i = 0; i < bank.size(); i++) {
-			if (bank.get(i).getNum() == wow) {
-				wow = bank.get(i).getNum();
-			}
-		}
-		return wow + 
-	}
+//	public int getDpoNext() {
+//		String wow = null;
+//		for (int i = 0; i < bank.size(); i++) {
+//			if (bank.get(i).getNum() == wow) {
+//				wow = bank.get(i).getNum();
+//			}
+//		}
+//		return wow + 
+//	}
 
 	public void printMenu() {
 		System.out.println("[---은행계좌관리---]");
