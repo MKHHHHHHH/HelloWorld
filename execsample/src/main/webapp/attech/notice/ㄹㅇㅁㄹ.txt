@@ -1,0 +1,75 @@
+package co.micol.privateproject.board.paging;
+
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+
+public class BoardPaging {
+	// 오라클 연결 정보
+	private static final String JDBC_URL = "jdbc:oracle:thin:@localhost:1521:XE"; // 접속 주소
+	private static final String DB_USER = "username"; // 데이터베이스 사용자 이름
+	private static final String DB_PASSWORD = "password"; // 데이터베이스 사용자 비밀번호
+
+	// 페이지당 게시물 수
+	private static final int PAGE_SIZE = 10;
+
+	public static void main(String[] args) {
+		int currentPage = 1; // 현재 페이지
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver"); // 오라클 드라이버 로드
+			Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASSWORD); // 데이터베이스 연결
+			System.out.println("데이터베이스에 연결되었습니다.");
+
+			// 총 게시물 수 조회
+			int totalRecords = getTotalRecords(conn);
+			System.out.println("전체 게시물 수: " + totalRecords);
+
+			// 총 페이지 수 계산
+			int totalPages = (int) Math.ceil((double) totalRecords / PAGE_SIZE);
+			System.out.println("전체 페이지 수: " + totalPages);
+
+			// 현재 페이지에 해당하는 게시물 조회
+			List<String> articles = getArticles(conn, currentPage);
+			for (String article : articles) {
+				System.out.println(article);
+			}
+
+			conn.close();
+			System.out.println("데이터베이스 연결을 종료합니다.");
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	// 총 게시물 수 조회
+	private static int getTotalRecords(Connection conn) throws SQLException {
+		String query = "SELECT COUNT(*) AS total FROM board";
+		try (Statement stmt = conn.createStatement()) {
+			ResultSet rs = stmt.executeQuery(query);
+			if (rs.next()) {
+				return rs.getInt("total");
+			}
+		}
+		return 0;
+	}
+
+	// 현재 페이지에 해당하는 게시물 조회
+	private static List<String> getArticles(Connection conn, int currentPage) throws SQLException {
+		List<String> articles = new ArrayList<>();
+		String query = "SELECT * FROM (SELECT id, title, content, ROW_NUMBER() OVER (ORDER BY id DESC) AS rnum FROM board) WHERE rnum BETWEEN ? AND ?";
+		int startRow = (currentPage - 1) * PAGE_SIZE + 1;
+		int endRow = currentPage * PAGE_SIZE;
+		try (PreparedStatement pstmt = conn.prepareStatement(query)) {
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			ResultSet rs = pstmt.executeQuery();
+			while (rs.next()) {
+				int id = rs.getInt("id");
+				String title = rs.getString("title");
+				String content = rs.getString("content");
+				articles.add(id + ". " + title + " - " + content);
+			}
+		}
+		return articles;
+	}
+}
