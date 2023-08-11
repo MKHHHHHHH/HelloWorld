@@ -165,15 +165,13 @@ public class MainMenu {
 
 	private void boardInsert() { // 글 등록
 		BoardVO board = new BoardVO();
-		System.out.print("글번호 입력>>");
-		int id = Integer.parseInt(scn.nextLine());
 		System.out.print("작성자 입력>>");
 		String writer = scn.nextLine();
 		System.out.print("제목 입력>>");
 		String title = scn.nextLine();
 		System.out.print("내용 입력>>");
 		String subject = scn.nextLine();
-		board.setBoardId(id);
+		board.setBoardId(bs.boardNum());
 		board.setBoardWriter(writer);
 		board.setBoardTitle(title);
 		board.setBoardSubject(subject);
@@ -193,7 +191,8 @@ public class MainMenu {
 		board.setBoardId(num);
 		board.setBoardSubject(content);
 		if (bs.boardUdpdate(board) == 1) {
-			System.out.println("수정완료");
+			System.out.println("수정 완료");
+
 		} else {
 			System.out.println("존재하지 않는 번호입니다. \n");
 		}
@@ -226,14 +225,14 @@ public class MainMenu {
 	}
 
 	private void boardSelectList() { // 전체목록 출력
-		System.out.println("번호\t작성자\t제목\t내용\t등록날짜  \t조회수");
 		List<BoardVO> bv = bs.boardSelectList();
 		if (!bv.isEmpty()) {
+			System.out.println("번호\t작성자\t제목\t내용\t등록날짜  \t조회수");
 			for (BoardVO board : bv) {
 				board.toString();
 			}
 		} else {
-			System.out.println("존재하지 않는 번호입니다. \n");
+			System.out.println("등록된 글이 없습니다.\n");
 		}
 	}
 }

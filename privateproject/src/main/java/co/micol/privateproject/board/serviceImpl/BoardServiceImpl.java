@@ -54,8 +54,9 @@ public class BoardServiceImpl implements BoardService {
 		try {
 			preparedStatement = connection.prepareStatement(sql);
 			resultSet = preparedStatement.executeQuery();
+			int num = 0;
 			if (resultSet.next()) {
-				return resultSet.getInt(1) + 1;
+				return num = resultSet.getInt(1) + 1;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
